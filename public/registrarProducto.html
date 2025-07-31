@@ -4,6 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrar Producto</title>
+      <style>
+        .boton-volver {
+            background-color: rgb(0, 201, 0);
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .boton-volver:hover {
+            background-color: green;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -21,7 +40,8 @@
         <button type="button" onclick="registrarProducto()">Registrar</button>
     </form>
 
-    <script src="./registrarProducto.js">
+    <a href="/menu.html" class="boton-volver"><= Volver al menú</a>
+    <script src="/controllers/registrarProducto.js">
 
     </script>
 </body>
