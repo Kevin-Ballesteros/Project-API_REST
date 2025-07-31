@@ -1,47 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Eliminar Producto</title>
-        <style>
-        .boton-volver {
-            background-color: rgb(0, 201, 0);
-            color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-            text-decoration: none;
-            display: inline-block;
-        }
+  <meta charset="UTF-8">
+  <title>Eliminar Producto</title>
 
-        .boton-volver:hover {
-            background-color: green;
-        }
+  <!-- ✅ Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    </style>
+  <style>
+    body {
+      padding: 50px;
+      background-color: #f8f9fa;
+    }
+
+    h2, h3 {
+      margin-bottom: 30px;
+    }
+
+    .boton-volver {
+      background-color: rgb(0, 201, 0);
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .boton-volver:hover {
+      background-color: green;
+    }
+  </style>
 </head>
 <body>
-    <h2>Buscar y Eliminar Producto</h2>
+  <div class="container">
+    <h2 class="text-center">🗑️ Buscar y Eliminar Producto</h2>
 
-    <form id="buscarForm">
-        <label for="buscarId">ID del producto:</label><br>
-        <input type="number" id="buscarId" name="buscarId" required><br><br>
-        <button type="button" onclick="buscarProducto()">Buscar</button>
+    <form id="buscarForm" class="mb-4">
+      <div class="mb-3">
+        <label for="buscarId" class="form-label">ID del producto:</label>
+        <input type="number" id="buscarId" name="buscarId" class="form-control" required>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="buscarProducto()">Buscar</button>
     </form>
 
-    <div id="productoInfo" style="display: none; margin-top: 20px;">
-        <h3>Información del producto</h3>
-        <p><strong>ID:</strong> <span id="infoId"></span></p>
-        <p><strong>Nombre:</strong> <span id="infoNombre"></span></p>
-        <p><strong>Precio:</strong> <span id="infoPrecio"></span></p>
-        <p><strong>Descripción:</strong> <span id="infoDescripcion"></span></p>
-        <button type="button" onclick="eliminarProducto()">Eliminar</button>
+    <div id="productoInfo" style="display: none;">
+      <h3 class="mt-4">📦 Información del producto</h3>
+      <ul class="list-group mb-3">
+        <li class="list-group-item"><strong>ID:</strong> <span id="infoId"></span></li>
+        <li class="list-group-item"><strong>Nombre:</strong> <span id="infoNombre"></span></li>
+        <li class="list-group-item"><strong>Precio:</strong> <span id="infoPrecio"></span></li>
+        <li class="list-group-item"><strong>Descripción:</strong> <span id="infoDescripcion"></span></li>
+      </ul>
+      <button type="button" class="btn btn-danger" onclick="eliminarProducto()">Eliminar</button>
     </div>
 
-    <a href="/menu.html" class="boton-volver"><= Volver al menú</a>
-    <script src="/controllers/eliminarProducto.js"></script>
+    <div class="mt-4 text-center">
+      <a href="/menu.html" class="boton-volver">Volver al menú</a>
+    </div>
+  </div>
+
+  <script src="/controllers/eliminarProducto.js"></script>
 </body>
 </html>
