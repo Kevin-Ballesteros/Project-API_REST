@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('../models/db');
 const app = express();
+const bcrypt = require('bcrypt');
 const port = 3000;
 
 app.use(cors());
@@ -49,9 +50,36 @@ app.patch('/api/productos/:id', (req, res) => {
 app.delete('/api/productos/:id', (req, res) => {
   const { id } = req.params;
   const sql = 'DELETE FROM productos WHERE id = ?';
-  db.query(sql, [id], (err, result) => {
+  db.query(sql, [id], (err, results) => {
     if (err) return res.status(500).send('Error al eliminar producto');
     res.send('Producto eliminado');
   });
 });
 
+
+// Ruta de login con validación de hash
+
+app.post('/api/login', (req, res) => {
+  const { username, password } = req.body;
+  const sql = 'SELECT * FROM usuarios WHERE username = ?';
+
+    db.query(sql, [username], async (err, results) => {
+      if (err){
+        console.error('Error en login', err);
+        return res.status(500).send ('Error de servidor');
+      }
+
+      if (results.length === 0) {
+        return res.status(401).json ({ success: false, message: 'Usuario no encontrado'});
+      }
+
+        const usuario = results [0];
+      const contraseniaValida = await bcrypt.compare(password, usuario.password);
+
+        if (contraseniaValida) {
+          res.json ({ success: true, token: 'token123', username});
+        } else {
+          res.status(401).json({ success: false, message: 'Contraseña incorrecta'})
+        }
+    });
+});
